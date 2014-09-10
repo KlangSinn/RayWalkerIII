@@ -11,6 +11,11 @@
 #define BUW_FENSTERCHEN_HPP
 
 #include "color.hpp"
+#include "light.hpp"
+#include "object.hpp"
+#include "sphere.hpp"
+#include "plane.hpp"
 #include "window.hpp"
+#include "camera.hpp"
 
 #endif // BUW_FENSTERCHEN_HPP
