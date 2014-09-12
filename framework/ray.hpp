@@ -4,29 +4,25 @@
 #include <glm/glm.hpp>
 
 class Ray {
+public:
+	Ray() {
+		origin_		= glm::vec3(0, 0, 0);
+		direction_ 	= glm::vec3(1, 0, 0);
+	};
+	Ray(glm::vec3 origin, glm::vec3 direction) {
+		origin_ 	= origin;
+		direction_ 	= direction;
+	};
 
+	// method functions
+	inline glm::vec3 getRayOrigin() { return origin_; }
+	inline glm::vec3 getRayDirection() { return direction_; }
+
+private:
 	// two vectors define a ray
 	// origin and direction
-	glm::ivec3 origin; 
-	glm::ivec3 direction;
-
-	public:
-		Ray();
-		Ray( glm::ivec3, glm::ivec3 );
-
-		// method functions
-		glm::ivec3 getRayOrigin() { return origin; }
-		glm::ivec3 getRayDirection() { return direction; }
+	glm::vec3 origin_; 
+	glm::vec3 direction_;
 };
-
-Ray::Ray() {
-	origin 		= glm::ivec3(0, 0, 0);
-	direction 	= glm::ivec3(1, 0, 0);
-}
-
-Ray::Ray(glm::ivec3 o, glm::ivec3 d) {
-	origin 		= o;
-	direction 	= d;
-}
 
 #endif

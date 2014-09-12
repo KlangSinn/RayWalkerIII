@@ -1,33 +1,31 @@
 #ifndef _SPHERE_HPP
 #define _SPHERE_HPP
 
-#include "color.hpp"
 #include "object.hpp"
+#include "math.h"
+#include "ray.hpp"
+#include "color.hpp"
 #include <glm/glm.hpp>
 
 class Sphere : public Object {
 public:
 		Sphere();
-		Sphere( glm::ivec3, double, Color, double, double);
+		Sphere( glm::vec3, double, Color, double, double);
 
-		// method functions ------------------------------------------
-		
-		double getOpacity() { return opacity_; };
-
-		double getShineValue() { return shine_; };
-				
+		// METHOD FUNCTIONS ///////////////////////////////////////////////////////////////////////////////				
 		Color 	getColor();
-		glm::ivec3 getNormalAt(glm::ivec3 intersection_position);
+		glm::vec3 getNormalAt(glm::vec3 intersection_position);
 		double findIntersection(Ray ray);
 
-		glm::ivec3 getLocalPoint(glm::ivec3 hitPoint) {
-			return glm::ivec3 (hitPoint[0] - center[0], hitPoint[1] - center[1],hitPoint[2] - center[2]);
+		inline glm::vec3 getLocalPoint(glm::vec3 hitPoint) {
+			return glm::vec3 (hitPoint[0] - center[0], hitPoint[1] - center[1],hitPoint[2] - center[2]);
 		};
-
-		glm::ivec3 	getSphereCenter() 	{ return center; }
-		double 	getSphereRadius() 	{ return radius; }
+		inline double getOpacity() { return opacity_; };
+		inline double getShineValue() { return shine_; };
+		inline glm::vec3 	getSphereCenter() 	{ return center; };
+		inline double 	getSphereRadius() 	{ return radius; };
 private:
-	glm::ivec3 center;
+	glm::vec3 center;
 	double radius;
 	Color color;
 	double opacity_;

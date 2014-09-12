@@ -56,6 +56,24 @@ struct Color
     tmp -= b;
     return tmp;
   }
+
+  Color clip() {
+		double alllight = r + g + b;
+		double excesslight = alllight - 3;
+		if(excesslight > 0) {
+			r = r + excesslight * (r/alllight);
+			g = g + excesslight * (g/alllight);
+			b = b + excesslight * (b/alllight);			
+		}
+		if(r > 1) { r = 1; }
+		if(g > 1) { g = 1; }
+		if(b > 1) { b = 1; }
+		if(r < 0) { r = 0; }
+		if(g < 0) { g = 0; }
+		if(b < 0) { b = 0; }
+
+		return Color(r, g, b);
+	}	
 };
 
 #endif //#define BUW_COLOR_HPP

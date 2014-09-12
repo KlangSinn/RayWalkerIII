@@ -1,15 +1,14 @@
 #include "sphere.hpp"
-#include "object.hpp"
 
 Color Sphere::getColor() 	{ 
 	return color; 
 }
 
-glm::ivec3 Sphere::getNormalAt(glm::ivec3 point) {
+glm::vec3 Sphere::getNormalAt(glm::vec3 point) {
 			
 	// normal always points away from the center of a sphere
 	// line between center of sphere and the given point is the normal vector
-	glm::ivec3 normalvector(point - center);
+	glm::vec3 normalvector(point - center);
 	return normalvector;
 }
 
@@ -18,8 +17,8 @@ glm::ivec3 Sphere::getNormalAt(glm::ivec3 point) {
 double Sphere::findIntersection(Ray ray) {
 	
 	// GET POINTS AND VECTORS
-	glm::ivec3 ray_origin = ray.getRayOrigin();
-	glm::ivec3 ray_direction = ray.getRayDirection();
+	glm::vec3 ray_origin = ray.getRayOrigin();
+	glm::vec3 ray_direction = ray.getRayDirection();
 
 	double a = 1; // normalized
 	double b =  (2 * (ray_origin[0] - center[0]) * ray_direction[0]) + 
@@ -56,13 +55,13 @@ double Sphere::findIntersection(Ray ray) {
 }
 
 Sphere::Sphere() {
-	center = glm::ivec3(0, 0, 0);
+	center = glm::vec3(0, 0, 0);
 	radius = 1.0;
 	color  = Color(0.5, 0.5, 0.5);
 	shine_ = 0.0;
 }
 
-Sphere::Sphere(glm::ivec3 centerValue, double radiusValue, Color colorValue, double opa, double shine) {
+Sphere::Sphere(glm::vec3 centerValue, double radiusValue, Color colorValue, double opa, double shine) {
 	center = centerValue;
 	radius = radiusValue;
 	color  = colorValue;

@@ -6,22 +6,22 @@ int main(int argc, char* argv[])
 {
 
 	// CREATE VECTORS AND POINTS ----------------------------------------
-	glm::ivec3 origin(0, 0, 0);	
-	glm::ivec3 x(1, 0, 0);
-	glm::ivec3 y(0, 1, 0);
-	glm::ivec3 z(0, 0, 1);
+	glm::vec3 origin(0, 0, 0);	
+	glm::vec3 x(1, 0, 0);
+	glm::vec3 y(0, 1, 0);
+	glm::vec3 z(0, 0, 1);
 
-	glm::ivec3 p1(3, 3, -6);
-	glm::ivec3 p2(-1, -0.5, -5);
-	glm::ivec3 p3(2, 0, -3);
+	glm::vec3 p1(3, 3, -6);
+	glm::vec3 p2(-1, -0.5, -5);
+	glm::vec3 p3(2, 0, -3);
 
 	// CAMERA -----------------------------------------------------------
-	glm::ivec3 campos(0, 0, 5);
-	glm::ivec3 lookat(0, 0, -1);
+	glm::vec3 campos(0, 0, 5);
+	glm::vec3 lookat(0, 0, -1);
 
-	glm::ivec3 camdir(lookat - campos); 
-	glm::ivec3 camright = glm::cross(camdir, y);
-	glm::ivec3 camdown = glm::cross(camdir, camright);
+	glm::vec3 camdir(lookat - campos); 
+	glm::vec3 camright = glm::cross(camdir, y);
+	glm::vec3 camdown = glm::cross(camdir, camright);
 
 	glm::normalize(camdir);
 	glm::normalize(camright);
@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
 
 	// LIGHT ------------------------------------------------------------
 	double ambientlight = 0.4;
-	glm::ivec3 light_position(5, 5, 10);
+	glm::vec3 light_position(5, 5, 10);
 	Light scene_light(light_position, white);
 	Light scene_light2(light_position, white);
 
@@ -74,27 +74,18 @@ int main(int argc, char* argv[])
 	scene_objects.push_back(dynamic_cast<Object*>(&scene_sphere3));
 	scene_objects.push_back(dynamic_cast<Object*>(&plane));
 
-	// ???
 	double accuracy 	= 0.000001;
 
 	// WINDOW RESOLUTION
-	const int width		= 800;
-	const int height	= 600;
-	const double aspectratio = (double) width / (double) height;
-
-	// CREATE OUTPUT WINDOW
-	//glutwindow::init(width, height, 100, 100, "RayWalker", argc, argv);
-	std::cout << "Hello, I am RayWalker." << std::endl;
-	
 	unsigned const width = 600;
 	unsigned const height = 600;
-	std::string const filename = "./raywalker.ppm";
-############################################################################################################################
-	Renderer app(width, height, filename);
-	Renderer rendi(scene_objects, sources, width, height, aspectratio, accuracy, ambientlight, scenecam);
-	std::thread thr(std::bind(&Renderer::render, &rendi));
-	glutwindow::instance().run();
+	const double aspectratio = (double) width / (double) height;
 
+	// OUTPUT -----------------------------------------------------------
+	std::cout << "Hello, I am RayWalker." << std::endl;	
+	std::string const filename = "./raywalker.ppm";
+
+	Renderer app(width, height, filename, scene_objects, sources, aspectratio, accuracy, ambientlight, scenecam);
 
 	std::thread thr([&app]() { app.render(); });
 

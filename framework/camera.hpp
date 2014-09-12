@@ -1,25 +1,26 @@
 #ifndef _CAMERA_HPP
 #define _CAMERA_HPP
+
 #include <glm/glm.hpp>
 
 class Camera {
 
 	// vectors defining position and direction of camera
-	glm::ivec3 camdir; 
-	glm::ivec3 camright; 
-	glm::ivec3 camdown;
+	glm::vec3 camdir; 
+	glm::vec3 camright; 
+	glm::vec3 camdown;
 	
-	glm::ivec3 campos;
+	glm::vec3 campos;
 
 	public:
 		Camera();
-		Camera( glm::ivec3, glm::ivec3, glm::ivec3, glm::ivec3 );
+		Camera( glm::vec3, glm::vec3, glm::vec3, glm::vec3 );
 
 		// method functions
-		glm::ivec3 getCameraPosition() { return campos; }
-		glm::ivec3 getCameraDirection() { return camdir; }
-		glm::ivec3 getCameraRight() { return camright; }
-		glm::ivec3 getCameraDown() { return camdown; }
+		glm::vec3 getCameraPosition() { return campos; }
+		glm::vec3 getCameraDirection() { return camdir; }
+		glm::vec3 getCameraRight() { return camright; }
+		glm::vec3 getCameraDown() { return camdown; }
 };
 
 #endif

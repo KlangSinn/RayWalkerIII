@@ -6,24 +6,24 @@
 #include <glm/glm.hpp>
 
 class Light : public Source {
-	glm::ivec3 position;
+	glm::vec3 position;
 	Color color;
 
 	public:
 		Light();
-		Light( glm::ivec3, Color );
+		Light( glm::vec3, Color );
 
 		// method functions
-		glm::ivec3 getPosition() { return position; }
+		glm::vec3 getPosition() { return position; }
 		Color getColor() { return color; }
 };
 
 Light::Light() {
-	position = glm::ivec3(0, 0, 0);
+	position = glm::vec3(0, 0, 0);
 	color 	 = Color(1.0, 1.0, 1.0);
 }
 
-Light::Light(glm::ivec3 p, Color c) {
+Light::Light(glm::vec3 p, Color c) {
 	position = p;
 	color 	 = c;
 }

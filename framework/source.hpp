@@ -6,12 +6,10 @@
 
 class Source {
 	public:
-		Source();
+		Source() {};
 
-		virtual glm::ivec3 getPosition() { return glm::ivec3(0, 0, 0); }
-		virtual Color getColor() { return Color(1, 1, 1); }
+		inline glm::vec3 getPosition() { return glm::vec3(0, 0, 0); }
+		inline Color getColor() { return Color(1, 1, 1); }
 };
-
-Source::Source() {}
 
 #endif
